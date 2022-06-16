@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+*{
+  background-color: #2A2C35;
+  font-family: 'Press Start 2P', cursive;
+}
+.counter {
+  width: 250px;
+  height: 210px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 50px #111213;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.text {
+  background-color: #61dafb;
+  color: #2A2C35;
+}
+
+.red_text {
+  background-color: #61dafb;
+  color: red;
+}
+
+.count {
+  font-size: 50px;
+  margin: auto;
+  background-color: #61dafb;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px;
+  box-shadow: 0 0 20px #61dafb;
+}
+button{
+  border-color: white;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 15px;
+  color: white;
+}
+button:hover{
+  background-color: blue;
+  background-color: rgba(141, 141, 141, 0.1);
+}
+
+button:disabled {
+  color: rgba(255, 255, 255, 0.47);
+}
+button:disabled:hover {
+  background-color: rgba(255, 49, 49, 0.23);
 }
