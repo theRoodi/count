@@ -1,11 +1,10 @@
 import React from 'react';
 
-type ButtonType = {
+export type ButtonType = {
     callback: () => void
     count: number
     name: string
-    stop:number
-    disabled: boolean
+    disabled?: boolean
 
 }
 const UniButton = (props: ButtonType) => {

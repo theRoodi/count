@@ -7,10 +7,13 @@ const Count = () => {
     const stop = 5
     const [count, setCount] = useState<number>(start);
 
-    const onClickChange= () => {
+    const onClickChangeHandler = () => {
         setCount(count + 1)
     }
-    const onClickReset= () => {
+    const onClickResetHandler = () => {
+        setCount(start)
+    }
+    const onClickSettingHandler = () => {
         setCount(start)
     }
 
@@ -20,8 +23,10 @@ const Count = () => {
         <>
             <div className={'counter'}>
                 <Counter count={count} start={start} stop={stop}/>
-                <UniButton count={count} callback={onClickChange} name={'inc'} stop={stop} disabled={count === stop}/>
-                <UniButton count={count} callback={onClickReset} name={'reset'} stop={stop} disabled={count === start}/>
+                <UniButton count={count} callback={onClickChangeHandler} name={'↑'} disabled={count === stop}/>
+                <UniButton count={count} callback={onClickResetHandler} name={'↓'} disabled={count === start}/>
+                <UniButton count={count} callback={onClickSettingHandler} name={'⋯'}/>
+
             </div>
         </>
 

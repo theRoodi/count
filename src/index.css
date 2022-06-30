@@ -4,8 +4,8 @@
   font-family: 'Press Start 2P', cursive;
 }
 .counter {
-  width: 250px;
-  height: 210px;
+  max-width: 500px;
+  height: 300px;
   position: absolute;
   top: 0;
   right: 0;
@@ -21,6 +21,7 @@
 .text {
   background-color: #61dafb;
   color: #2A2C35;
+  height: 100px;
 }
 
 .red_text {
@@ -40,8 +41,8 @@
 }
 button{
   border-color: white;
-  padding: 20px;
-  margin: 10px;
+  padding: 25px;
+  margin: 30px;
   border-radius: 15px;
   color: white;
 }

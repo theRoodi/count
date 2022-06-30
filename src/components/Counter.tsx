@@ -1,6 +1,6 @@
 import React from 'react';
 
-type CountType = {
+export type CountType = {
     count: number
     start: number
     stop: number
