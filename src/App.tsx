@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import Count from './components/Count';
+import {Count} from './components/Count';
+import {CounterSettings} from './components/CounterSettings';
 
 function App() {
-  return (
-    <div className="App">
-      <Count />
-    </div>
-  );
+    const [loggle, setToggle] = useState(false)
+
+    return (
+        <div className="App">
+            toggle
+            ? <Count toggle={loggle} setToggle={setToggle}/>
+            : <CounterSettings toggle={loggle} setToggle={setToggle}/>
+        </div>
+    );
 }
 
 export default App;
