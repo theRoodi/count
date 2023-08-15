@@ -2,17 +2,23 @@ import React, {useReducer, useState} from 'react';
 import Counter from './Counter';
 import UniButton from './UniButton';
 
-
-export const Count = () => {
+type CountPropsType = {
+    toggle: boolean
+    setToggle: () => boolean
+}
+export const Count = (props: any) => {
     const start = 0;
     const stop = 5;
+    const [setting, setSetting] = useState(props.toggle)
+
+    const changeToggle = () => {
+        props.setToggle(setSetting(!setting))
+    }
     const counterReducer = (count: number, action: any) => {
         switch (action.type) {
             case 'inc':
                 return count + 1
             case 'res':
-                return start
-            case 'set':
                 return start
             default:
                 return count
@@ -29,7 +35,8 @@ export const Count = () => {
                            disabled={count === stop}/>
                 <UniButton count={count} callback={() => dispatchNumber({type: 'res'})} name={'↓'}
                            disabled={count === start}/>
-                <UniButton count={count} callback={() => dispatchNumber({type: 'set'})} name={'⋯'}/>
+                <UniButton count={count} callback={() => dispatchNumber({type: 'res'})} name={'OK'} disabled/>
+                <UniButton count={count} callback={changeToggle} name={'⋯'} disabled/>
 
             </div>
         </>

@@ -4,13 +4,15 @@ import {Count} from './components/Count';
 import {CounterSettings} from './components/CounterSettings';
 
 function App() {
-    const [loggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState(true)
 
     return (
         <div className="App">
-            toggle
-            ? <Count toggle={loggle} setToggle={setToggle}/>
-            : <CounterSettings toggle={loggle} setToggle={setToggle}/>
+            {
+                toggle
+                    ? <Count toggle={toggle} setToggle={setToggle}/>
+                    : <CounterSettings toggle={toggle} setToggle={setToggle}/>
+            }
         </div>
     );
 }
