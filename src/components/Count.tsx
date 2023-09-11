@@ -7,36 +7,38 @@ type CountPropsType = {
     setToggle: () => boolean
 }
 export const Count = (props: any) => {
-    const start = 0;
-    const stop = 5;
-    const [setting, setSetting] = useState(props.toggle)
 
     const changeToggle = () => {
-        props.setToggle(setSetting(!setting))
+        props.setToggle(false)
     }
+
     const counterReducer = (count: number, action: any) => {
         switch (action.type) {
             case 'inc':
                 return count + 1
             case 'res':
-                return start
+                return props.start
             default:
                 return count
         }
     }
 
-    const [count, dispatchNumber] = useReducer(counterReducer, start);
+    const [count, dispatchNumber] = useReducer(counterReducer, props.start);
+    const setCount = () => {
+
+    }
 
     return (
         <>
             <div className={'counter'}>
-                <Counter count={count} start={start} stop={stop}/>
-                <UniButton count={count} callback={() => dispatchNumber({type: 'inc'})} name={'↑'}
-                           disabled={count === stop}/>
-                <UniButton count={count} callback={() => dispatchNumber({type: 'res'})} name={'↓'}
-                           disabled={count === start}/>
-                <UniButton count={count} callback={() => dispatchNumber({type: 'res'})} name={'OK'} disabled/>
-                <UniButton count={count} callback={changeToggle} name={'⋯'} disabled/>
+                <Counter start={props.start} stop={props.stop} toggle={props.toggle} setCount={setCount}/>
+                <UniButton callback={() => dispatchNumber({type: 'inc'})} name={'↑'}
+                           disabled={count === props.stop}/>
+                <UniButton callback={() => dispatchNumber({type: 'res'})} name={'↓'}
+                           disabled={count === props.start}/>
+                <UniButton callback={() => dispatchNumber({type: 'res'})} name={'OK'}
+                           disabled={count === props.start}/>
+                <UniButton callback={changeToggle} name={'⋯'}/>
 
             </div>
         </>

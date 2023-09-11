@@ -3,29 +3,28 @@ import UniButton from './UniButton';
 import Counter from './Counter';
 
 export const CounterSettings = (props: any) => {
-    const [setting, setSetting] = useState(props.toggle)
-    const [value, setValue] = useState(() => {
-        return Number(localStorage.getItem('counterValue'))
-    })
 
     useEffect(() => {
-        localStorage.setItem('counterValue', JSON.stringify(value))
-    }, [value])
+        localStorage.setItem('start', JSON.stringify(props.start))
+    }, [props.start])
+    useEffect(() => {
+        localStorage.setItem('stop', JSON.stringify(props.stop))
+    }, [props.stop])
 
     const changeToggle = () => {
-        props.setToggle(setSetting(!setting))
+        props.setToggle(true)
     }
 
-    const incValue = () => setValue(value + 1)
-    const decValue = () => setValue(value - 1)
-    const saveValue = () => setValue(value)
+    const saveValue = () => {
+
+    }
     return (
         <div className={'counter'}>
-            <Counter count={value} start={0} stop={5}/>
-            <UniButton count={value} callback={incValue} name={'↑'} />
-            <UniButton count={value} callback={decValue} name={'↓'} />
-            <UniButton count={value} callback={saveValue} name={'OK'}/>
-            <UniButton count={value} callback={changeToggle} name={'⋯'}/>
+            <Counter start={0} stop={5} toggle={props.toggle} setCount={props.setCount}/>
+            <UniButton callback={() => {}} name={'↑'} />
+            <UniButton callback={() => {}} name={'↓'} />
+            <UniButton callback={saveValue} name={'OK'}/>
+            <UniButton callback={changeToggle} name={'⋯'}/>
         </div>
     );
 };

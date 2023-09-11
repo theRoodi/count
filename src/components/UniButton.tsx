@@ -2,7 +2,6 @@ import React from 'react';
 
 export type ButtonType = {
     callback: () => void
-    count: number
     name: string
     disabled?: boolean
 
