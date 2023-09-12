@@ -15,8 +15,10 @@ const Counter = (props: CountType) => {
                     ? <div className={props.start !== props.stop ? 'text' : 'red_text'}>{props.start}</div>
                     : <>
                         <div className={'text'}>{props.start}</div>
-                        <input type="number" name={'start'} value={props.start}/>
-                        <input type="number" name={'stop'}/>
+                        <input type="number" name={'start'} value={props.start} onChange={() => {
+                        }}/>
+                        <input type="number" name={'stop'} value={props.stop} onChange={() => {
+                        }}/>
                     </>
             }
         </div>

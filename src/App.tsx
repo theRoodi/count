@@ -2,31 +2,32 @@ import React, {useState} from 'react';
 import './App.css';
 import {Count} from './components/Count';
 import {CounterSettings} from './components/CounterSettings';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootStateType} from './bll/store';
+import {incValueAC} from './bll/counterReducer';
 
 function App() {
     const [toggle, setToggle] = useState(true)
-    const [start, setStart] = useState(() => {
-        return Number(localStorage.getItem('start'));
-    })
-    const [stop, setStop] = useState(() => {
-        return Number(localStorage.getItem('stop'));
-    })
+    const start = useSelector<RootStateType, number>(state => state.counter.start)
+    // const stop = useSelector<RootStateType, number>(state => state.counter.stop)
 
-    const setCount = (start: number, stop: number) => {
-        setStart(start)
-        setStop(stop)
+    const dispatch = useDispatch()
+
+    const incValue = () => {
+        dispatch(incValueAC())
     }
+    const setCount = () => {
 
-
+    }
     return (
         <div className="App">
             {
                 toggle
                     ? <Count toggle={toggle} setToggle={setToggle}
-                             start={start} stop={stop} setCount={setCount} />
+                             start={start} stop={7} setCount={incValue}/>
                     :
                     <CounterSettings toggle={toggle} setToggle={setToggle}
-                                     start={start} stop={stop} setCount={setCount} />
+                                     start={start} stop={7} setCount={setCount}/>
             }
         </div>
     );
