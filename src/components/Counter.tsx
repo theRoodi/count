@@ -2,11 +2,11 @@ import React from 'react';
 import {Count} from './Count';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootStateType} from '../bll/store';
-import {incValueAC, resetValueAC, setValueAC} from '../bll/counterReducer';
-import {loadState, saveState} from '../utils/localstorage';
+import {incValueAC, resetValueAC, setValueStartAC, setValueStopAC} from '../bll/counterReducer';
+import {loadState} from '../utils/localstorage';
 
 export type CountType = {}
-type CounterType = {
+export type CounterType = {
     counter: { start: number; stop: number; toggle: boolean; reset: number; }
 }
 
@@ -21,35 +21,25 @@ const Counter = (props: CountType) => {
     const incValue = () => {
         dispatch(incValueAC(start))
     }
-    const resetValue = () => {
+    const resetValue = () => { 
         dispatch(resetValueAC(reset))
     }
-
-    const setValue = () => {
-        dispatch(setValueAC(start))
-        saveState(state)
-    }
     const getValue = () => {
-       loadState()
-    }
-    const toggleSetting = () => {
+        dispatch(setValueStartAC(loadState().counter.reset))
+        dispatch(resetValueAC(loadState().counter.reset))
+        dispatch(setValueStopAC(loadState().counter.stop))
+        console.log(loadState())
 
-    }
-    const clear = () => {
-        localStorage.clear()
     }
 
     return (
         <>
-            <div>
+            <div className='counter'>
                 <Count/>
-                <div className={'counter'}>
-                    <button onClick={incValue}>↑</button>
+                <div className='buttons'>
+                    <button onClick={incValue} disabled={start === stop}>↑</button>
                     <button onClick={resetValue}>↓</button>
-                    <button onClick={setValue}>OK</button>
                     <button onClick={getValue}>GET</button>
-                    {/*<button onClick={toggleSetting}>⊚</button>*/}
-                    <button onClick={clear}>CLR</button>
                 </div>
             </div>
         </>

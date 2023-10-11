@@ -21,9 +21,16 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
                 ...state, start: action.start
             }
         }
-        case 'SET-VALUE':{
+        case 'SET-VALUE-START': {
             return {
-                ...state, reset: action.value
+                ...state,
+                start: action.value,
+                reset: action.value
+            }
+        }
+        case 'SET-VALUE-STOP': {
+            return {
+                ...state, stop: action.value
             }
         }
 
@@ -38,9 +45,10 @@ type ActionType = IncValueType | ResetValueType | GetValueType | SetValueType
 type IncValueType = ReturnType<typeof incValueAC>
 type ResetValueType = ReturnType<typeof resetValueAC>
 type GetValueType = ReturnType<typeof getValueAC>
-type SetValueType = ReturnType<typeof setValueAC>
+type SetValueType = ReturnType<typeof setValueStartAC> | ReturnType<typeof setValueStopAC>
 
-export const incValueAC = (value: number) => ({type: 'INC-VALUE', value} as const )
-export const resetValueAC = (start:number) => ({type: 'RESET-VALUE', start} as const )
-export const getValueAC = () => ({type: 'GET-VALUE'} as const )
-export const setValueAC = (value:number) => ({type: 'SET-VALUE', value} as const )
+export const incValueAC = (value: number) => ({type: 'INC-VALUE', value} as const)
+export const resetValueAC = (start: number) => ({type: 'RESET-VALUE', start} as const)
+export const getValueAC = () => ({type: 'GET-VALUE'} as const)
+export const setValueStartAC = (value: number) => ({type: 'SET-VALUE-START', value} as const)
+export const setValueStopAC = (value: number) => ({type: 'SET-VALUE-STOP', value} as const)
