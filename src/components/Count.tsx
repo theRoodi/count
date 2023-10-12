@@ -1,34 +1,16 @@
 import React from 'react';
-import Counter from './Counter';
-import UniButton from './UniButton';
+import {useSelector} from 'react-redux';
+import {RootStateType} from '../bll/store';
 
-type CountPropsType = {
-    toggle: boolean
-    setToggle: () => boolean
-}
-export const Count = (props: any) => {
+type CountPropsType = {}
+export const Count = (props: CountPropsType) => {
 
-    const changeToggle = () => {
-        props.setToggle(false)
-    }
-
-    console.log(props.start)
+    const start = useSelector<RootStateType, number>(state => state.counter.start)
 
     return (
         <>
-            <div className={'counter'}>
-                <Counter start={props.start} stop={props.stop} toggle={props.toggle} setCount={() => {
-                }}/>
-                <UniButton callback={props.incValue} name={'↑'}
-                           disabled={props.start === props.stop}/>
-                <UniButton callback={() => {
-                }} name={'↓'}
-                           disabled={props.stop === props.start}/>
-                <UniButton callback={() => {
-                }} name={'OK'}
-                           disabled={props.stop === props.start}/>
-                <UniButton callback={changeToggle} name={'⋯'}/>
-
+            <div className={'count'}>
+                {start}
             </div>
         </>
 

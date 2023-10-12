@@ -1,41 +1,46 @@
 const initialState = {
-    start: 1
+    start: 1,
+    stop: 5,
+    toggle: false,
+    reset: 1
 }
 
 export type InitialStateType = typeof initialState
 
 export const counterReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+
+
     switch (action.type) {
-        case 'INC-VALUE':
+        case 'INC-VALUE': {
             return {
-                ...state, start: state.start + 1
+                ...state, start: action.value + 1
             }
-        case 'SET-VALUE':
+        }
+        case 'RESET-VALUE': {
             return {
-                ...state, start: action.value
+                ...state, start: action.start
             }
-        case 'GET-VALUE':
+        }
+        case 'SET-VALUE':{
             return {
-                ...state
+                ...state, reset: action.value
             }
+        }
+
+
         default:
             return state
     }
 
+}
+type ActionType = IncValueType | ResetValueType | GetValueType | SetValueType
 
-}
-export const incValueAC = () => {
-    return {type: 'INC-VALUE'} as const
-}
-export const setValueAC = (value: number) => {
-    return {type: 'SET-VALUE', value} as const
-}
-export const getValueAC = () => {
-    return {type: 'GET-VALUE'} as const
-}
+type IncValueType = ReturnType<typeof incValueAC>
+type ResetValueType = ReturnType<typeof resetValueAC>
+type GetValueType = ReturnType<typeof getValueAC>
+type SetValueType = ReturnType<typeof setValueAC>
 
-export type IncValueType = ReturnType<typeof incValueAC>
-export type SetValueType = ReturnType<typeof setValueAC>
-export type GetValueType = ReturnType<typeof getValueAC>
-
-type ActionType = IncValueType | SetValueType | GetValueType
+export const incValueAC = (value: number) => ({type: 'INC-VALUE', value} as const )
+export const resetValueAC = (start:number) => ({type: 'RESET-VALUE', start} as const )
+export const getValueAC = () => ({type: 'GET-VALUE'} as const )
+export const setValueAC = (value:number) => ({type: 'SET-VALUE', value} as const )
