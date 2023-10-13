@@ -2,8 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {RootStateType} from '../bll/store';
 
-type CountPropsType = {}
-export const Count = (props: CountPropsType) => {
+export const Count = () => {
 
     const start = useSelector<RootStateType, number>(state => state.counter.start)
 

@@ -1,6 +1,5 @@
 .App {
-  display: flex;
-  gap: 25px;
+  margin: auto;
 }
 .count {
   display: grid;
@@ -11,7 +10,7 @@
 }
 
 .buttons{
-
+  text-align: center;
 }
 
 button {
@@ -19,13 +18,15 @@ button {
 }
 
 .counter {
-  width: 150px;
+  width: 250px;
   border: 1px solid black;
   border-radius: 15px;
   padding: 15px;
 }
 input {
-  max-width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 150px;
   font-size: 25px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -40,3 +41,4 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+

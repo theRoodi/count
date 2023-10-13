@@ -33,6 +33,11 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
                 ...state, stop: action.value
             }
         }
+        case 'CHANGE-TOGGLE': {
+            return {
+                ...state, toggle: action.value
+            }
+        }
 
 
         default:
@@ -40,9 +45,10 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
     }
 
 }
-type ActionType = IncValueType | ResetValueType | GetValueType | SetValueType
+type ActionType = IncValueType | ResetValueType | GetValueType | SetValueType | ToggleValueType
 
 type IncValueType = ReturnType<typeof incValueAC>
+type ToggleValueType = ReturnType<typeof toggleValueAC>
 type ResetValueType = ReturnType<typeof resetValueAC>
 type GetValueType = ReturnType<typeof getValueAC>
 type SetValueType = ReturnType<typeof setValueStartAC> | ReturnType<typeof setValueStopAC>
@@ -52,3 +58,4 @@ export const resetValueAC = (start: number) => ({type: 'RESET-VALUE', start} as 
 export const getValueAC = () => ({type: 'GET-VALUE'} as const)
 export const setValueStartAC = (value: number) => ({type: 'SET-VALUE-START', value} as const)
 export const setValueStopAC = (value: number) => ({type: 'SET-VALUE-STOP', value} as const)
+export const toggleValueAC = (value: boolean) => ({type: 'CHANGE-TOGGLE', value} as const)
